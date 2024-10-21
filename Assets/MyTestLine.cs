@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Linefy;
@@ -111,9 +112,9 @@ public class MyTestLine : DrawableComponent
     public Vector3[] allPos;
     public Vector2Int[] allIndex;
     public SerializationData_LinesBase wireframeProperties = new SerializationData_LinesBase(3, Color.white, 1);
-    OneLine _line;
+    private OneLine _line;
 
-    OneLine line
+    private OneLine line
     {
         get
         {
@@ -142,4 +143,16 @@ public class MyTestLine : DrawableComponent
     //     MyTestLine result = go.AddComponent<MyTestLine>();
     //     return result;
     // }
+
+    private void Update()
+    {
+        if (Input.GetKeyUp(KeyCode.K))
+        {
+            allPos = new Vector3[2];
+            allPos[0] = Vector3.zero;
+            allPos[1] = Vector3.right;
+            allIndex = new Vector2Int[1];
+            allIndex[0].Set(0,1);
+        }
+    }
 }
