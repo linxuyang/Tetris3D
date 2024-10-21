@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using Linefy;
 using Linefy.Serialization;
 using UnityEngine;
@@ -35,21 +33,27 @@ public class PixelLine : DrawableComponent
         line.wireframeProperties = wireframeProperties;
     }
 
-    // public static MyTestLine CreateInstance() {
-    //     GameObject go = new GameObject("New TestLine");
-    //     MyTestLine result = go.AddComponent<MyTestLine>();
-    //     return result;
-    // }
+    public void SetupPoints(Vector3[] points,Vector2Int[] indexs)
+    {
+        allPos = points;
+        allIndex = indexs;
+    }
+    
+    public void SetupPoints(Vector3[] points)
+    {
+        allPos = points;
+        allIndex = new Vector2Int[points.Length - 1];
+        for (int i = 0; i < allIndex.Length; i++)
+        {
+            allIndex[i].Set(i, i + 1);
+        }
+    }
 
     private void Update()
     {
         if (Input.GetKeyUp(KeyCode.K))
         {
-            allPos = new Vector3[2];
-            allPos[0] = Vector3.zero;
-            allPos[1] = Vector3.right;
-            allIndex = new Vector2Int[1];
-            allIndex[0].Set(0, 1);
+            SetupPoints(new Vector3[2] { Vector3.zero, Vector3.right });
         }
     }
 }
