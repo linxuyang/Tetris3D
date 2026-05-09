@@ -14,6 +14,7 @@ public class GestureUtil : MonoBehaviour
     private void OnEnable()
     {
         touchSupported = Input.touchSupported;
+        touchSupported = false;
         posMap = new Dictionary<int, Vector2>();
         allTouch = new List<Touch>();
         Debug.Log("touchSupported:" + touchSupported);
